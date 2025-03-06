@@ -3,3 +3,16 @@ spring:
     url: r2dbc:postgresql://localhost:5432/batch_db
     username: postgres
     password: password
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: job-processing-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
